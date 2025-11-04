@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: restdatadocs
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restdatadocs
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
