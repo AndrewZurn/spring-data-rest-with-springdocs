@@ -22,9 +22,13 @@ data class User(
     @Column(name = "email", nullable = false, unique = true)
     @param:Schema(description = "The email for the user. Must be unique.")
     val email: String,
-) {
+
+    @Column("address", nullable = false)
+    @param:Schema(description = "The address of the user.")
+    var address: String? = null,
+
     @Id
     @Column(columnDefinition = "uuid", updatable = false)
-    @Schema(description = "Unique identifier of the user")
+    @param:Schema(description = "Unique identifier of the user")
     val id: UUID = UUID.randomUUID()
-}
+)
