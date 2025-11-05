@@ -1,8 +1,11 @@
 plugins {
-	kotlin("jvm") version "1.9.25"
-	kotlin("plugin.spring") version "1.9.25"
+    id("org.jlleitschuh.gradle.ktlint") version "13.0.0"
+	kotlin("jvm") version "2.2.20"
+	kotlin("plugin.spring") version "2.2.20"
+    kotlin("plugin.jpa") version "2.2.20"
 	id("org.springframework.boot") version "3.5.7"
 	id("io.spring.dependency-management") version "1.1.7"
+    id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
 
 group = "com.andrewzurn"
@@ -23,11 +26,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    implementation("org.springframework.data:spring-data-rest-webmvc")
     implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.data:spring-data-rest-hal-explorer")
 	implementation("org.postgresql:postgresql")
+
+    // Open API documentation
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.8.14")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

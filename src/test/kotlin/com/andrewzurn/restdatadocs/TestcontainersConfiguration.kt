@@ -16,18 +16,13 @@ class TestcontainersConfiguration {
     fun postgresContainer(): PostgreSQLContainer<*> {
         val containerPort = 5432
         val localPort = 5432
-        return PostgreSQLContainer(DockerImageName.parse("postgres:latest"))
+        return PostgreSQLContainer(DockerImageName.parse("postgres:17.6"))
             .withExposedPorts(containerPort)
             .withCreateContainerCmdModifier { cmd ->
                 cmd.withHostConfig(
                     cmd
                         .hostConfig!!
-                        .withPortBindings(
-                            PortBinding(
-                                Ports.Binding.bindPort(localPort),
-                                ExposedPort(containerPort),
-                            ),
-                        ),
+                        .withPortBindings(PortBinding(Ports.Binding.bindPort(localPort), ExposedPort(containerPort))),
                 )
             }
     }
