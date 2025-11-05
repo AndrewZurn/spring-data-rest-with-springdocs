@@ -3,7 +3,8 @@ plugins {
 	kotlin("jvm") version "2.2.20"
 	kotlin("plugin.spring") version "2.2.20"
     kotlin("plugin.jpa") version "2.2.20"
-	id("org.springframework.boot") version "3.5.7"
+    kotlin("kapt") version "2.2.20"
+    id("org.springframework.boot") version "3.5.7"
 	id("io.spring.dependency-management") version "1.1.7"
     id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
@@ -33,6 +34,10 @@ dependencies {
 	implementation("org.springframework.data:spring-data-rest-hal-explorer")
 	implementation("org.postgresql:postgresql")
 
+    // QueryDSL dependencies
+    implementation("com.querydsl:querydsl-jpa:5.1.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.1.0:jakarta")
+
     // Open API documentation
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
@@ -42,6 +47,15 @@ dependencies {
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+kapt {
+    javacOptions {
+        option("querydsl.entityAccessors", "true")
+    }
+    arguments {
+        arg("plugin", "com.querydsl.apt.jpa.JPAAnnotationProcessor")
+    }
 }
 
 kotlin {

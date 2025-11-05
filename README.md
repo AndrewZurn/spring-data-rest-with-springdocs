@@ -5,12 +5,39 @@ A demo Spring Boot project in Kotlin showcasing:
 - **OpenAPI** documentation via SpringDoc
 - **Flyway** for database migrations (which also is applied to the Testcontainers DB)
 - **Testcontainers** for running the application locally and integration testing with PostgreSQL
+- **Querydsl** for flexible, type-safe query support on REST endpoints
 
 ## Database & Migrations
 
 - Uses **PostgreSQL** (see `application.yaml` for config)
 - **Flyway** manages schema migrations (`src/main/resources/db/migration`)
 - Initial migration creates the `users` table
+
+## Querydsl: Flexible Query Engine
+
+This project integrates **Querydsl** to provide advanced, type-safe, and flexible querying capabilities for your REST 
+endpoints. Querydsl enables clients to filter and search entities using query parameters, supporting complex predicates 
+and case-insensitive matching.
+
+- The `UserRepository` extends `QuerydslPredicateExecutor` and customizes bindings for flexible search.
+- Example: To search for users with a first name containing "john" (case-insensitive):
+
+  ```
+  GET /users?firstName=john
+  ```
+
+- You can combine multiple parameters for more advanced queries:
+
+  ```
+  GET /users?firstName=john&lastName=doe
+  ```
+
+- All string fields support `containsIgnoreCase` matching by default.
+
+**How it works:**  
+Querydsl generates Kotlin/Java classes (Q-types) for your entities at build time. Spring Data REST automatically 
+exposes predicate-based search endpoints using these Q-types, allowing for expressive and type-safe queries via 
+HTTP parameters.
 
 ## Running Locally (with Testcontainers)
 
@@ -55,4 +82,3 @@ endpoints at `http://localhost:8080/`.
 
 - Unit and integration tests use JUnit 5 and Testcontainers.
 - See `src/test/kotlin` for test examples.
-
