@@ -21,10 +21,10 @@ data class User(
 
     @Column(name = "email", nullable = false, unique = true)
     @param:Schema(description = "The email for the user. Must be unique.")
-    val email: String
+    val email: String,
 ) {
     @Id
     @Column(columnDefinition = "uuid", updatable = false)
-    @Schema(description = "Unique identifier of the user", accessMode = Schema.AccessMode.READ_ONLY)
+    @Schema(description = "Unique identifier of the user")
     val id: UUID = UUID.randomUUID()
 }
