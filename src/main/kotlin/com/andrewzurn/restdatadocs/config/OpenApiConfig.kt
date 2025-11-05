@@ -17,6 +17,8 @@ class OpenApiConfig {
             openApi.components?.schemas?.get(key)?.let { schema: Schema<*> ->
                 schema.properties?.remove("id")
                 schema.required?.remove("id")
+                // wonder if there is a better way to handle this (maybe with reflection?)
+                schema.required?.remove("address")
             }
         }
     }
