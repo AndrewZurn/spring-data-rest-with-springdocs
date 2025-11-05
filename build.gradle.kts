@@ -34,7 +34,7 @@ dependencies {
 	implementation("org.postgresql:postgresql")
 
     // Open API documentation
-    implementation("org.springdoc:springdoc-openapi-starter-common:2.8.14")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
