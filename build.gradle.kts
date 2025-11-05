@@ -10,7 +10,7 @@ plugins {
 
 group = "com.andrewzurn"
 version = "0.0.1-SNAPSHOT"
-description = "Demo project for Spring Boot"
+description = "Demo project for Spring Boot, demos Spring Data REST, and OpenAPI specification generation"
 
 java {
 	toolchain {
@@ -35,7 +35,6 @@ dependencies {
 
     // Open API documentation
     implementation("org.springdoc:springdoc-openapi-starter-common:2.8.14")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
